@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import {
   LayoutDashboard,
   Plus,
@@ -57,61 +58,61 @@ interface PillarConfig {
 
 const LAHZO_BUSINESS_MATRIX: PillarConfig[] = [
   {
-    name: "Dealership Inventory Sync",
-    businessGoal: "Make sure the cars, boats, or RVs listed on the dealership's website perfectly match what our AI Sales Agents talk about in real-time.",
-    systemsOwned: "Automated vehicle price & detail checkers, dealership system integrations.",
+    name: "Client Inventory Feed Sync",
+    businessGoal: "Ensure the catalog of high-value goods, equipment, or service listings on the client's public channels matches what our AI Sales Agents reference in real-time.",
+    systemsOwned: "Automated inventory price & detail verification checkers, client catalog database integrations.",
     icon: Terminal,
     bg: "bg-indigo-50/70",
     border: "border-indigo-200/50",
     text: "text-indigo-700",
     accentColor: "indigo",
-    informationInputs: "Live vehicle lists, prices, and features updating directly from the dealership's inventory systems.",
-    automatedAssets: "An automated background checker that scans for missing vehicle details and alerts us before a customer notices.",
-    alertTriggers: "Send an automatic emergency ticket to engineering if a car's price or description disappears during an active customer chat.",
+    informationInputs: "Live catalog details, pricing structures, and specifications updated directly from the client's inventory database.",
+    automatedAssets: "An automated background checker that scans for missing item specifications and alerts the team before a client or customer notices.",
+    alertTriggers: "Send an automatic emergency ticket to engineering if a product's price or description disappears from the active catalog feed.",
     teamRoles: {
       Sales: {
         roleName: "Ad & Campaign Setup",
-        clearExpectation: "Double-check that the vehicles featured in our active Facebook/Google ads match the client's current physical inventory specials.",
+        clearExpectation: "Double-check that the specific items, packages, or listings promoted in active campaigns match the client's current availability catalog.",
         primaryTools: "Lahzo Campaign Creator, Facebook Ad Manager",
-        whenToHandoff: "When launching a new promotional package or entering new inventory categories into the active ad queue."
+        whenToHandoff: "When launching a new promotional package or adding new inventory lines to the active campaign queue."
       },
       AccountManagement: {
         roleName: "Onboarding Coordinator",
-        clearExpectation: "Collect the tech setup files and inventory access credentials from the dealership's IT lead during initial client setup.",
-        primaryTools: "Client Onboarding Dashboard, Dealership CRM Portals (VinSolutions, CDK)",
-        whenToHandoff: "Immediately during week one of client onboarding, or if the dealer changes their internal inventory system."
+        clearExpectation: "Collect the catalog feeds, technical setup requirements, and data credentials from the client's technical representative during initial setup.",
+        primaryTools: "Client Onboarding Dashboard, Client CRM & Database Portals",
+        whenToHandoff: "Immediately during the first week of client onboarding, or when a client updates their catalog storage system."
       },
       Product: {
         roleName: "AI Knowledge Manager",
-        clearExpectation: "Structure the incoming inventory information so our AI agents can read details perfectly without hallucinating details.",
+        clearExpectation: "Structure the incoming inventory catalog data so our AI agents can read details perfectly without hallucinating product specifications.",
         primaryTools: "Lahzo Core Prompts Management Workspace",
-        whenToHandoff: "When updating how the AI references specific vehicle options, trims, or localized package details."
+        whenToHandoff: "When updating how the AI references specific models, service terms, or package options."
       },
       Technology: {
         roleName: "Integration Systems Guard",
-        clearExpectation: "Build stable data connections and monitor them to ensure dealer systems communicate smoothly with our servers.",
+        clearExpectation: "Build stable data connections and monitor them to ensure client databases communicate smoothly with our servers.",
         primaryTools: "Lahzo Integration Monitor, Automated Field Matcher",
-        whenToHandoff: "When the system detects a change in the dealership's data format or an active integration link drops."
+        whenToHandoff: "When the system flags a change in the client's data format or an active integration link drops."
       }
     },
     stepByStepPlaybook: [
-      { stepNumber: "Step 1: Check Connection Status", whatToDo: "Open the client profile and review the latest communication records to pinpoint where the update failed.", toolToUse: "Integration Status Console" },
-      { stepNumber: "Step 2: Map Missing Fields", whatToDo: "Verify if the dealership changed their vehicle field names (e.g., changing 'Cost' to 'Retail Price') and update our platform labels to match.", toolToUse: "Lahzo Field Matcher Panel" },
-      { stepNumber: "Step 3: Update AI Memory", whatToDo: "Force a refresh of the AI's vehicle database to immediately provide the agent with the updated pricing details.", toolToUse: "AI Content Refresh Tool" }
+      { stepNumber: "Step 1: Check Connection Status", whatToDo: "Open the client profile and review the latest communication records to pinpoint where the data feed update failed.", toolToUse: "Integration Status Console" },
+      { stepNumber: "Step 2: Map Missing Fields", whatToDo: "Verify if the client changed their catalog field labels (e.g., changing 'Cost' to 'Base Rate') and update our platform labels to match.", toolToUse: "Lahzo Field Matcher Panel" },
+      { stepNumber: "Step 3: Update AI Memory", whatToDo: "Force a refresh of the AI's catalog database to immediately provide the agent with the updated details.", toolToUse: "AI Content Refresh Tool" }
     ]
   },
   {
     name: "Hot Lead Handoff & Routing",
-    businessGoal: "Eliminate dropped leads during late-night automated chats by ensuring every verified appointment goes straight to the dealership's team.",
-    systemsOwned: "Appointment dispatch hooks, customer notification loops, dealership CRM lead injectors.",
+    businessGoal: "Eliminate dropped leads during late-night automated chats by ensuring every verified appointment goes straight to the client's sales team.",
+    systemsOwned: "Appointment dispatch hooks, customer notification loops, client CRM lead injectors.",
     icon: Zap,
     bg: "bg-amber-50/70",
     border: "border-amber-200/50",
     text: "text-amber-700",
     accentColor: "amber",
-    informationInputs: "Customer conversation logs, appointment booking details, and dealership CRM delivery receipt confirmations.",
+    informationInputs: "Customer conversation logs, appointment booking details, and client CRM delivery receipt confirmations.",
     automatedAssets: "An automated emergency system that texts, emails, and alerts the right team member until someone confirms receipt.",
-    alertTriggers: "Trigger an immediate red-flag notification if a hot customer appointment fails to push into a dealership's CRM system within 3 minutes.",
+    alertTriggers: "Trigger an immediate red-flag notification if a hot customer appointment fails to push into a client's CRM system within 3 minutes.",
     teamRoles: {
       Sales: {
         roleName: "Lead Quality Evaluator",
@@ -120,16 +121,16 @@ const LAHZO_BUSINESS_MATRIX: PillarConfig[] = [
         whenToHandoff: "Weekly during account optimization sweeps, or if an automated chat handles a high-value buyer inquiry poorly."
       },
       AccountManagement: {
-        roleName: "Dealer Success Advisor",
-        clearExpectation: "Monitor how quickly the dealership's floor staff responds to the automated lead alerts we dispatch to them.",
+        roleName: "Client Success Advisor",
+        clearExpectation: "Monitor how quickly the client's team responds to the automated lead alerts we dispatch to them.",
         primaryTools: "HubSpot CRM, Lahzo Account Health Scores",
-        whenToHandoff: "During regular monthly client reviews, or if a dealer reports they aren't seeing appointments show up on their calendar."
+        whenToHandoff: "During regular monthly client reviews, or if a client reports they aren't seeing appointments show up on their calendar."
       },
       Product: {
         roleName: "Conversational Goal Designer",
-        clearExpectation: "Refine our booking conversation templates to naturally guide customers toward scheduling on-site visits.",
+        clearExpectation: "Refine our booking conversation templates to naturally guide customers toward scheduling on-site visits or consultations.",
         primaryTools: "Dialogue Workflow Mapping Tool",
-        whenToHandoff: "When launching a brand new dealership vertical market (such as Powersports or Marine networks)."
+        whenToHandoff: "When launching a brand new industry vertical market (such as Powersports, Elective Healthcare, or Industrial Ag)."
       },
       Technology: {
         roleName: "Messaging Network Guard",
@@ -139,9 +140,9 @@ const LAHZO_BUSINESS_MATRIX: PillarConfig[] = [
       }
     },
     stepByStepPlaybook: [
-      { stepNumber: "Step 1: Verify the Booking Details", whatToDo: "Review the chat history to verify the customer provided a complete name, phone number, and targeted vehicle interest.", toolToUse: "Lahzo Customer Chat Log" },
+      { stepNumber: "Step 1: Verify the Booking Details", whatToDo: "Review the chat history to verify the customer provided a complete name, phone number, and targeted product interest.", toolToUse: "Lahzo Customer Chat Log" },
       { stepNumber: "Step 2: Trigger Manual Delivery", whatToDo: "Click the manual bypass button to push the customer details straight to the backup email and text distribution list.", toolToUse: "Lead Dispatch Override Panel" },
-      { stepNumber: "Step 3: Alert Account Team", whatToDo: "Log a connection task so the assigned Account Manager can notify the dealership's software administrator about the CRM blockage.", toolToUse: "Internal Support Desk" }
+      { stepNumber: "Step 3: Alert Account Team", whatToDo: "Log a connection task so the assigned Account Manager can notify the client's software administrator about the CRM blockage.", toolToUse: "Internal Support Desk" }
     ]
   },
   {
@@ -190,26 +191,26 @@ const LAHZO_BUSINESS_MATRIX: PillarConfig[] = [
   },
   {
     name: "Closed-Loop Performance Attribution",
-    businessGoal: "Trace exactly which Facebook or Google ad originally brought in a customer who ended up buying a vehicle from the dealership.",
+    businessGoal: "Trace exactly which digital ad campaign originally brought in a customer who ended up purchasing a product or service from the client.",
     systemsOwned: "Online marketing tracking tags, ad campaign parameters, and sales matching databases.",
     icon: LayoutDashboard,
     bg: "bg-blue-50/70",
     border: "border-blue-200/50",
     text: "text-blue-700",
     accentColor: "blue",
-    informationInputs: "Click tracking logs, campaign names, and completed purchase logs from the dealer's sales records.",
+    informationInputs: "Click tracking logs, campaign names, and completed purchase logs from the client's sales records.",
     automatedAssets: "An automated script that links active website chats to the specific ad campaign the user clicked.",
     alertTriggers: "Send an alert to the account team if user campaign details fail to attach to their active chat session logs.",
     teamRoles: {
       Sales: {
         roleName: "Ad Performance Adjuster",
-        clearExpectation: "Adjust marketing budgets to focus on the ad campaigns generating actual vehicle sales rather than simple clicks.",
+        clearExpectation: "Adjust marketing budgets to focus on the ad campaigns generating actual catalog sales rather than simple clicks.",
         primaryTools: "Facebook Ads Manager, Google Analytics",
-        whenToHandoff: "Weekly when adjusting campaign budgets or launching new vehicle promo designs."
+        whenToHandoff: "Weekly when adjusting campaign budgets or launching new product promotion designs."
       },
       AccountManagement: {
         roleName: "ROI Report Presenter",
-        clearExpectation: "Match monthly closed sales lists with the original ad campaigns to show the dealership exactly how much revenue our system generated for them.",
+        clearExpectation: "Match monthly closed sales lists with the original ad campaigns to show the client exactly how much revenue our system generated for them.",
         primaryTools: "Lahzo Revenue Dashboard, Microsoft Excel",
         whenToHandoff: "Prior to monthly client performance calls or quarterly business review meetings."
       },
@@ -227,41 +228,41 @@ const LAHZO_BUSINESS_MATRIX: PillarConfig[] = [
       }
     },
     stepByStepPlaybook: [
-      { stepNumber: "Step 1: Check Tracking Codes", whatToDo: "Test the dealership's active campaign links to confirm they include the required tracking tags.", toolToUse: "Google Tag Assistant" },
+      { stepNumber: "Step 1: Check Tracking Codes", whatToDo: "Test the client's active campaign links to confirm they include the required tracking tags.", toolToUse: "Google Tag Assistant" },
       { stepNumber: "Step 2: Inspect Chat Session", whatToDo: "Check if the active database is correctly receiving campaign data from the customer's web browser.", toolToUse: "Session State Console" },
       { stepNumber: "Step 3: Run Database Matcher", whatToDo: "Trigger a manual attribution matching run to link outstanding sales records to campaign clicks.", toolToUse: "Attribution Sync Panel" }
     ]
   },
   {
     name: "AI Conversational Guardrails",
-    businessGoal: "Ensure our AI sales agents remain extremely professional, follow local advertising laws, and steer conversations toward vehicle sales.",
+    businessGoal: "Ensure our AI sales agents remain extremely professional, follow compliance guidelines, and steer conversations toward active sales.",
     systemsOwned: "AI response safety filters, dialogue checks, and conversation prompt libraries.",
     icon: Sparkles,
     bg: "bg-emerald-50/70",
     border: "border-emerald-200/50",
     text: "text-emerald-700",
     accentColor: "emerald",
-    informationInputs: "Active customer chat logs, AI compliance scores, and dealer-specific script requirements.",
-    automatedAssets: "A built-in safety checker that blocks the AI from replying if it detects a response that goes off-topic or mentions incorrect prices.",
-    alertTriggers: "Trigger a notification to the product team if the AI attempts to send a price estimate that differs from the live inventory system.",
+    informationInputs: "Active customer chat logs, AI compliance scores, and client-specific prompt requirements.",
+    automatedAssets: "A built-in safety checker that blocks the AI from replying if it detects a response that goes off-topic or mentions incorrect details.",
+    alertTriggers: "Trigger a notification to the product team if the AI attempts to send a price estimate that differs from the live inventory catalog system.",
     teamRoles: {
       Sales: {
-        roleName: "Script & Deal Configurator",
+        roleName: "Script & Offer Configurator",
         clearExpectation: "Identify custom promotional scripts or regional financing offers that need to be fed into the AI's training context.",
         primaryTools: "Lahzo Script Manager",
-        whenToHandoff: "When the dealer launches a seasonal promotion or special discount rate program."
+        whenToHandoff: "When the client launches a seasonal promotion or special discount rate program."
       },
       AccountManagement: {
         roleName: "Compliance & Tone Inspector",
-        clearExpectation: "Review past chat logs to ensure the AI's tone, wording, and disclosures perfectly match the dealership's brand requirements.",
+        clearExpectation: "Review past chat logs to ensure the AI's tone, wording, and disclosures perfectly match the client's brand requirements.",
         primaryTools: "Lahzo Quality Review Portal",
-        whenToHandoff: "When onboarding a new dealer client or addressing feedback from a dealership general manager."
+        whenToHandoff: "When onboarding a new client or addressing feedback from a client manager."
       },
       Product: {
         roleName: "AI Instructions Owner",
         clearExpectation: "Refine prompt libraries and safety rules so the AI answers customer questions accurately without going off track.",
         primaryTools: "Lahzo Prompt Workspace",
-        whenToHandoff: "When updating prompt guidelines for specific vehicle categories or financing programs."
+        whenToHandoff: "When updating prompt guidelines for specific product categories or financing programs."
       },
       Technology: {
         roleName: "Safety Pipeline Monitor",
@@ -278,7 +279,7 @@ const LAHZO_BUSINESS_MATRIX: PillarConfig[] = [
   },
   {
     name: "Client Zero-Churn Compliance",
-    businessGoal: "Perform automated pre-launch checks and continuously monitor live accounts to ensure the system is completely stable and dealer staff are active.",
+    businessGoal: "Perform automated pre-launch checks and continuously monitor live accounts to ensure the system is completely stable and client staff are active.",
     systemsOwned: "System uptime checkers, account performance monitors, and pre-launch setup checkers.",
     icon: ShieldCheck,
     bg: "bg-rose-50/70",
@@ -287,7 +288,7 @@ const LAHZO_BUSINESS_MATRIX: PillarConfig[] = [
     accentColor: "rose",
     informationInputs: "Server performance metrics, account setup completeness logs, and customer health parameters.",
     automatedAssets: "A pre-flight checklist app that scans active integrations and confirms everything is stable before a client goes live.",
-    alertTriggers: "Send an immediate priority ticket if a live dealership's lead-delivery connection drops or goes offline for more than 5 minutes.",
+    alertTriggers: "Send an immediate priority ticket if a live client's lead-delivery connection drops or goes offline for more than 5 minutes.",
     teamRoles: {
       Sales: {
         roleName: "Pre-Launch Validator",
@@ -296,14 +297,14 @@ const LAHZO_BUSINESS_MATRIX: PillarConfig[] = [
         whenToHandoff: "When moving a deal from the final proposal stage into active operational onboarding."
       },
       AccountManagement: {
-        roleName: "Dealer Retention Monitor",
-        clearExpectation: "Monitor account performance indicators and coordinate immediate action if a dealership's staff stops responding to hot lead alerts.",
+        roleName: "Client Retention Monitor",
+        clearExpectation: "Monitor account performance indicators and coordinate immediate action if a client's staff stops responding to hot lead alerts.",
         primaryTools: "Gainsight Account Suite, Account Status Console",
         whenToHandoff: "Daily during routine status audits, or if an account's health rating drops below standards."
       },
       Product: {
         roleName: "Release Quality Manager",
-        clearExpectation: "Establish strict criteria for new software feature deployments to ensure we never disrupt active dealer systems.",
+        clearExpectation: "Establish strict criteria for new software feature deployments to ensure we never disrupt active client systems.",
         primaryTools: "Product Release Registry",
         whenToHandoff: "When preparing to push a major software update from staging to live production."
       },
@@ -316,8 +317,8 @@ const LAHZO_BUSINESS_MATRIX: PillarConfig[] = [
     },
     stepByStepPlaybook: [
       { stepNumber: "Step 1: Run Pre-Flight Checklist", whatToDo: "Trigger the automated setup checks to ensure active connections, data lines, and phone numbers are green.", toolToUse: "Onboarding Launch Suite" },
-      { stepNumber: "Step 2: Audit Communication Lines", whatToDo: "Test the speed and reliability of the dealership's text and email lines under heavy traffic simulations.", toolToUse: "API Speed Test Panel" },
-      { stepNumber: "Step 3: Approve Live Setup", whatToDo: "Approve the dealer client to go fully live once every checklist item compiles cleanly with a green pass.", toolToUse: "Client Status Portal" }
+      { stepNumber: "Step 2: Audit Communication Lines", whatToDo: "Test the speed and reliability of the client's text and email lines under heavy traffic simulations.", toolToUse: "API Speed Test Panel" },
+      { stepNumber: "Step 3: Approve Live Setup", whatToDo: "Approve the client to go fully live once every checklist item compiles cleanly with a green pass.", toolToUse: "Client Status Portal" }
     ]
   }
 ]
@@ -353,9 +354,15 @@ export default function HumanAccessibleLaunchpad() {
               {appMode === 'overview' ? 'Core Arenas List' : 'Team Accountability Matrix'}
             </span>
           </div>
-          <div className="flex items-center gap-2 text-xs text-[#5c5f66] bg-white border border-black/10 px-4 py-1.5 rounded-full font-mono shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-blue-600 shrink-0" />
-            <span>Company-Wide View</span>
+          <div className="flex items-center gap-4">
+            <Link href="/glossary" className="flex items-center gap-1.5 text-xs font-bold text-[#5c5f66] hover:text-blue-600 transition-colors cursor-pointer bg-white border border-black/10 px-3 py-1.5 rounded-full shadow-sm">
+              <BookOpen className="w-3.5 h-3.5" />
+              Glossary
+            </Link>
+            <div className="flex items-center gap-2 text-xs text-[#5c5f66] bg-white border border-black/10 px-4 py-1.5 rounded-full font-mono shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-600 shrink-0" />
+              <span>Company-Wide View</span>
+            </div>
           </div>
         </header>
 
